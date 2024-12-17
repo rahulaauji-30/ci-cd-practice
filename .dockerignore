@@ -1,0 +1,42 @@
+# Ignore Python cache and temporary files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Ignore virtual environments
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Ignore logs and temp files
+*.log
+*.tmp
+*.bak
+
+# Ignore environment variables and credentials
+.env
+*.env
+config.json
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+*.iml
+
+# Ignore Docker build cache
+.dockerignore
+Dockerfile~
+
+# Ignore Git files
+.git/
+.gitignore
+
+# Ignore node_modules if you're using frontend (optional)
+node_modules/
+npm-debug.log
+yarn.lock

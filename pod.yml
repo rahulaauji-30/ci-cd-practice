@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ci-cd
+spec:
+  containers:
+    - name: ci-cd-container
+      image: ci-cd:1
+      ports:
+        - containerPort: 3000
