@@ -7,8 +7,30 @@ spec:
     - name: repository-url
       description: Link of the github repository.
       type: string
+    - name: branch
+      description: Branch to Clone
+      default: master
   steps:
     - name: checkout
       image: bitnami/git:latest
       command: [git]
-      args: ["clone","$(params.repository-url)"]
+      args: ["clone","--branch","$(params.branch)","$(params.repository-url)"]
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadat:
+  name: lint
+spec:
+  - name: flake8-test
+    image: python:3.9-slim
+    script: |
+      #!/bin/bash
+      echo "Environment"
+      python --version
+      pwd
+      echo "Updating Pip"
+      python -m pip install --upgrade pip wheel
+      pip install -r requirements.txt
+      pip install flake8
+      flake8 .

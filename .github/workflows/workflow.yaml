@@ -1,0 +1,36 @@
+name: ci practice
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+      branches:
+        - main
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        container:
+            image: python:3.9-slim
+        steps:
+            - name: checkout
+              uses: actions/checkout@v3
+            - name: message
+              run: echo "Hello, World!"
+            - name: setup python
+              run: |
+                python --version
+                python -m pip install --upgrade pip wheel
+                pip install -r requirements.txt
+            - name: lint
+              run: |
+                flake8 service --count --select=E9,F63,D7,F82 --show-source --statistics
+                flake8 service --count --max-complexity=10 --max-line-length=127 --statistics
+                echo "Linting Complete"
+            - name: test
+              run: |
+                pytest
+                echo "Testing Complete"
+            - name: build
+              run: |
+                echo "Building Complete"
+                docker --version
