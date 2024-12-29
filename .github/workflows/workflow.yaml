@@ -28,7 +28,7 @@ jobs:
                 echo "Linting Complete"
             - name: test
               run: |
-                pytest
+                pytest main.py
                 echo "Testing Complete"
             - name: build
               run: |
